@@ -1,0 +1,72 @@
+<app-sidebar>
+  <div class="page">
+    <div class="page-header">
+      <div>
+        <h1>Financeiro</h1>
+        <p>Acompanhe receitas, despesas e saldo da loja</p>
+      </div>
+      <button class="btn-primary" (click)="mostrarForm = !mostrarForm">
+        {{ mostrarForm ? 'Cancelar' : '+ Novo Lançamento' }}
+      </button>
+    </div>
+
+    <div class="resumo">
+      <div class="resumo-card resumo-card--receita">
+        <span class="resumo-label">Receitas</span>
+        <span class="resumo-valor">{{ totalReceitas | currency:'BRL' }}</span>
+      </div>
+      <div class="resumo-card resumo-card--despesa">
+        <span class="resumo-label">Despesas</span>
+        <span class="resumo-valor">{{ totalDespesas | currency:'BRL' }}</span>
+      </div>
+      <div class="resumo-card">
+        <span class="resumo-label">Saldo</span>
+        <span class="resumo-valor">{{ saldo | currency:'BRL' }}</span>
+      </div>
+    </div>
+
+    <div class="form-panel" *ngIf="mostrarForm">
+      <div class="form-row">
+        <input type="text" placeholder="Descrição" [(ngModel)]="novoLancamento.descricao" />
+        <select [(ngModel)]="novoLancamento.tipo">
+          <option value="receita">Receita</option>
+          <option value="despesa">Despesa</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <input type="number" placeholder="Valor (R$)" [(ngModel)]="novoLancamento.valor" />
+        <input type="date" [(ngModel)]="novoLancamento.data" />
+      </div>
+      <button class="btn-primary" (click)="salvar()">Salvar Lançamento</button>
+    </div>
+
+    <table class="tabela" *ngIf="lancamentos.length; else vazio">
+      <thead>
+        <tr>
+          <th>Descrição</th>
+          <th>Tipo</th>
+          <th>Valor</th>
+          <th>Data</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let lancamento of lancamentos">
+          <td>{{ lancamento.descricao }}</td>
+          <td>
+            <span class="badge" [class.badge--receita]="lancamento.tipo === 'receita'" [class.badge--despesa]="lancamento.tipo === 'despesa'">
+              {{ lancamento.tipo }}
+            </span>
+          </td>
+          <td>{{ lancamento.valor | currency:'BRL' }}</td>
+          <td>{{ lancamento.data | date:'dd/MM/yyyy' }}</td>
+          <td><button class="btn-remover" (click)="remover(lancamento.id)">Remover</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #vazio>
+      <p class="empty-state">Nenhum lançamento cadastrado.</p>
+    </ng-template>
+  </div>
+</app-sidebar>

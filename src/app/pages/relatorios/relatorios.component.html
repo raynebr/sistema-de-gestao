@@ -1,0 +1,31 @@
+<app-sidebar>
+  <div class="page">
+    <div class="page-header">
+      <h1>Relatórios</h1>
+      <p>Resumo consolidado do desempenho da loja</p>
+    </div>
+
+    <div class="cards" *ngIf="resumo">
+      <div class="card">
+        <span class="card-label">Clientes cadastrados</span>
+        <span class="card-valor">{{ resumo.totalClientes }}</span>
+      </div>
+      <div class="card">
+        <span class="card-label">Itens em estoque</span>
+        <span class="card-valor">{{ resumo.totalItensEstoque }}</span>
+      </div>
+      <div class="card">
+        <span class="card-label">Total vendido</span>
+        <span class="card-valor">{{ resumo.totalVendido | currency:'BRL' }}</span>
+      </div>
+      <div class="card" [class.card--negativo]="resumo.saldoFinanceiro < 0">
+        <span class="card-label">Saldo financeiro</span>
+        <span class="card-valor">{{ resumo.saldoFinanceiro | currency:'BRL' }}</span>
+      </div>
+      <div class="card">
+        <span class="card-label">Ordens em aberto</span>
+        <span class="card-valor">{{ resumo.ordensAbertas }}</span>
+      </div>
+    </div>
+  </div>
+</app-sidebar>

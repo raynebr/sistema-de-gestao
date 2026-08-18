@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+
+:root {
+  --accent: #f2c14e;
+  --accent-soft: rgba(242, 193, 78, .18);
+  --text: #ffffff;
+  --text-muted: #d8cfe0;
+  --text-faint: #b3a8c2;
+  --border: #a495ad;
+  --surface: #0c0e15;
+  --surface-2: #7a6a80;
+  --danger: #f26666;
+  --success: #4ade80;
+
+  /* tons escuros para texto sobre o painel de conteúdo claro (à direita do sidebar) */
+  --ink: #1f2430;
+  --ink-muted: #5b5566;
+  --ink-faint: #857f8f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+}
+

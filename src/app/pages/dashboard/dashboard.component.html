@@ -1,0 +1,32 @@
+<app-sidebar>
+  <div class="dashboard-content">
+  <h1>Dashboard</h1>
+  <p>Visão Geral centralizada do seu negocio</p>
+  <app-tabs (tabChange)="mudarTab($event)"></app-tabs>
+
+  <div class="vendas-grid" *ngIf="activeTab === 'vendas'">
+    <app-vendas-card
+      *ngFor="let venda of vendas"
+      [value]="venda.value"
+      [label]="venda.label"
+      [progress]="venda.progress"
+    ></app-vendas-card>
+  </div>
+
+  <div class="empty-state" *ngIf="activeTab === 'ordens'">
+    <p>Conteúdo de Ordens de Serviço aqui (ainda não implementado)</p>
+  </div>
+
+  <div class="empty-state" *ngIf="activeTab === 'outras'">
+    <p>Conteúdo de Outras Métricas aqui (ainda não implementado)</p>
+  </div>
+
+  <div class="empty-state" *ngIf="activeTab === 'colaboradores'">
+    <p>Conteúdo de Colaboradores aqui (ainda não implementado)</p>
+  </div>
+
+  <div class="empty-state" *ngIf="activeTab === 'insights'">
+    <p>Conteúdo de Insights aqui (ainda não implementado)</p>
+  </div>
+  </div>
+</app-sidebar>

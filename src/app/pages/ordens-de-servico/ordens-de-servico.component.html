@@ -1,0 +1,56 @@
+<app-sidebar>
+  <div class="page">
+    <div class="page-header">
+      <div>
+        <h1>Ordens de Serviço</h1>
+        <p>Acompanhe os reparos e serviços em andamento</p>
+      </div>
+      <button class="btn-primary" (click)="mostrarForm = !mostrarForm">
+        {{ mostrarForm ? 'Cancelar' : '+ Nova Ordem' }}
+      </button>
+    </div>
+
+    <div class="form-panel" *ngIf="mostrarForm">
+      <div class="form-row">
+        <input type="text" placeholder="Cliente" [(ngModel)]="novaOrdem.cliente" />
+        <input type="text" placeholder="Equipamento" [(ngModel)]="novaOrdem.equipamento" />
+      </div>
+      <div class="form-row">
+        <input type="text" placeholder="Problema relatado" [(ngModel)]="novaOrdem.problema" />
+        <input type="date" [(ngModel)]="novaOrdem.data" />
+      </div>
+      <button class="btn-primary" (click)="salvar()">Salvar Ordem</button>
+    </div>
+
+    <table class="tabela" *ngIf="ordens.length; else vazio">
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>Equipamento</th>
+          <th>Problema</th>
+          <th>Status</th>
+          <th>Data</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let ordem of ordens">
+          <td>{{ ordem.cliente }}</td>
+          <td>{{ ordem.equipamento }}</td>
+          <td>{{ ordem.problema }}</td>
+          <td>
+            <select class="status-select" [class]="classeStatus(ordem.status)" [ngModel]="ordem.status" (ngModelChange)="atualizarStatus(ordem.id, $event)">
+              <option *ngFor="let s of status" [value]="s">{{ s }}</option>
+            </select>
+          </td>
+          <td>{{ ordem.data | date:'dd/MM/yyyy' }}</td>
+          <td><button class="btn-remover" (click)="remover(ordem.id)">Remover</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #vazio>
+      <p class="empty-state">Nenhuma ordem de serviço cadastrada.</p>
+    </ng-template>
+  </div>
+</app-sidebar>

@@ -17,6 +17,8 @@
     border:1px solid var(--border);
     border-left:none;
     border-radius:0 24px 24px 0;
+    overflow-y: auto;
+    background: radial-gradient(circle at 50% 0%, var(--accent-soft), transparent 45%);
   }
   .sidebar{
     margin:20px 0px 20px 20px;
@@ -41,7 +43,9 @@
     color:var(--text);
     font-weight:700;
     font-size:17px;
-    letter-spacing:.2px; }
+    letter-spacing:.2px; 
+    cursor:pointer;
+  }
   .brand-sub{ 
     font-size:10.5px; 
     color:var(--text-faint); 
