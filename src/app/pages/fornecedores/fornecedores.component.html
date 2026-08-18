@@ -1,0 +1,52 @@
+<app-sidebar>
+  <div class="page">
+    <div class="page-header">
+      <div>
+        <h1>Fornecedores</h1>
+        <p>Gerencie os fornecedores da loja</p>
+      </div>
+      <button class="btn-primary" (click)="mostrarForm = !mostrarForm">
+        {{ mostrarForm ? 'Cancelar' : '+ Novo Fornecedor' }}
+      </button>
+    </div>
+
+    <div class="form-panel" *ngIf="mostrarForm">
+      <div class="form-row">
+        <input type="text" placeholder="Nome da empresa" [(ngModel)]="novoFornecedor.nome" />
+        <input type="text" placeholder="Contato" [(ngModel)]="novoFornecedor.contato" />
+      </div>
+      <div class="form-row">
+        <input type="text" placeholder="Telefone" [(ngModel)]="novoFornecedor.telefone" />
+        <input type="text" placeholder="CNPJ" [(ngModel)]="novoFornecedor.cnpj" />
+      </div>
+      <button class="btn-primary" (click)="salvar()">Salvar Fornecedor</button>
+    </div>
+
+    <input class="busca" type="text" placeholder="Buscar por nome..." [(ngModel)]="busca" />
+
+    <table class="tabela" *ngIf="fornecedoresFiltrados.length; else vazio">
+      <thead>
+        <tr>
+          <th>Empresa</th>
+          <th>Contato</th>
+          <th>Telefone</th>
+          <th>CNPJ</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fornecedor of fornecedoresFiltrados">
+          <td>{{ fornecedor.nome }}</td>
+          <td>{{ fornecedor.contato }}</td>
+          <td>{{ fornecedor.telefone }}</td>
+          <td>{{ fornecedor.cnpj }}</td>
+          <td><button class="btn-remover" (click)="remover(fornecedor.id)">Remover</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #vazio>
+      <p class="empty-state">Nenhum fornecedor encontrado.</p>
+    </ng-template>
+  </div>
+</app-sidebar>

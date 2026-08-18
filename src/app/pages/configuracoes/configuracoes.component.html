@@ -1,0 +1,31 @@
+<app-sidebar>
+  <div class="page">
+    <div class="page-header">
+      <h1>Configurações</h1>
+      <p>Ajuste as preferências gerais do sistema</p>
+    </div>
+
+    <div class="form-card" *ngIf="configuracoes">
+      <label>Nome da loja</label>
+      <input type="text" [(ngModel)]="configuracoes.nomeLoja" />
+
+      <label>Email de contato</label>
+      <input type="email" [(ngModel)]="configuracoes.email" />
+
+      <label>Tema</label>
+      <select [(ngModel)]="configuracoes.tema">
+        <option value="escuro">Escuro</option>
+        <option value="claro">Claro</option>
+      </select>
+
+      <label class="checkbox">
+        <input type="checkbox" [(ngModel)]="configuracoes.notificacoes" />
+        Receber notificações do sistema
+      </label>
+
+      <button class="btn-primary" (click)="salvar()">Salvar Configurações</button>
+
+      <p class="confirmacao" *ngIf="salvo">Configurações salvas com sucesso.</p>
+    </div>
+  </div>
+</app-sidebar>

@@ -1,0 +1,61 @@
+<app-sidebar>
+  <div class="page">
+    <div class="page-header">
+      <div>
+        <h1>Vendas</h1>
+        <p>Métricas e registros de vendas da loja</p>
+      </div>
+      <button class="btn-primary" (click)="mostrarForm = !mostrarForm">
+        {{ mostrarForm ? 'Cancelar' : '+ Nova Venda' }}
+      </button>
+    </div>
+
+    <div class="vendas-grid">
+      <app-vendas-card
+        *ngFor="let venda of metricas"
+        [value]="venda.value"
+        [label]="venda.label"
+        [progress]="venda.progress"
+      ></app-vendas-card>
+    </div>
+
+    <div class="form-panel" *ngIf="mostrarForm">
+      <div class="form-row">
+        <input type="text" placeholder="Cliente" [(ngModel)]="novoRegistro.cliente" />
+        <input type="text" placeholder="Produto" [(ngModel)]="novoRegistro.produto" />
+      </div>
+      <div class="form-row">
+        <input type="number" placeholder="Valor (R$)" [(ngModel)]="novoRegistro.valor" />
+        <input type="date" [(ngModel)]="novoRegistro.data" />
+      </div>
+      <button class="btn-primary" (click)="salvar()">Salvar Venda</button>
+    </div>
+
+    <h2 class="secao-titulo">Registros recentes</h2>
+
+    <table class="tabela" *ngIf="registros.length; else vazio">
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Cliente</th>
+          <th>Produto</th>
+          <th>Valor</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let registro of registros">
+          <td>{{ registro.data | date:'dd/MM/yyyy' }}</td>
+          <td>{{ registro.cliente }}</td>
+          <td>{{ registro.produto }}</td>
+          <td>{{ registro.valor | currency:'BRL' }}</td>
+          <td><button class="btn-remover" (click)="remover(registro.id)">Remover</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #vazio>
+      <p class="empty-state">Nenhuma venda registrada.</p>
+    </ng-template>
+  </div>
+</app-sidebar>

@@ -1,0 +1,26 @@
+app-tabs {
+  display: block;
+  margin-bottom: 24px;
+}
+
+.vendas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+.dashboard-content {
+  height: 100vh;
+  padding: 24px;
+  box-sizing: border-box;
+  color: var(--ink);
+}
+
+.dashboard-content > p {
+  color: var(--ink-muted);
+  margin-top: -8px;
+}
+
+.empty-state {
+  color: var(--ink-faint);
+  padding: 32px 0;
+}

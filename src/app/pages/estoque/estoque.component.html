@@ -1,0 +1,55 @@
+<app-sidebar>
+  <div class="page">
+    <div class="page-header">
+      <div>
+        <h1>Estoque</h1>
+        <p>Controle os produtos disponíveis na loja</p>
+      </div>
+      <button class="btn-primary" (click)="mostrarForm = !mostrarForm">
+        {{ mostrarForm ? 'Cancelar' : '+ Novo Item' }}
+      </button>
+    </div>
+
+    <div class="form-panel" *ngIf="mostrarForm">
+      <div class="form-row">
+        <input type="text" placeholder="Produto" [(ngModel)]="novoItem.produto" />
+        <input type="text" placeholder="Categoria" [(ngModel)]="novoItem.categoria" />
+      </div>
+      <div class="form-row">
+        <input type="number" placeholder="Quantidade" [(ngModel)]="novoItem.quantidade" />
+        <input type="number" placeholder="Preço (R$)" [(ngModel)]="novoItem.preco" />
+      </div>
+      <button class="btn-primary" (click)="salvar()">Salvar Item</button>
+    </div>
+
+    <input class="busca" type="text" placeholder="Buscar por produto ou categoria..." [(ngModel)]="busca" />
+
+    <table class="tabela" *ngIf="itensFiltrados.length; else vazio">
+      <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Categoria</th>
+          <th>Quantidade</th>
+          <th>Preço</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of itensFiltrados">
+          <td>{{ item.produto }}</td>
+          <td>{{ item.categoria }}</td>
+          <td>
+            {{ item.quantidade }}
+            <span class="badge badge--baixo" *ngIf="isEstoqueBaixo(item)">estoque baixo</span>
+          </td>
+          <td>{{ item.preco | currency:'BRL' }}</td>
+          <td><button class="btn-remover" (click)="remover(item.id)">Remover</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <ng-template #vazio>
+      <p class="empty-state">Nenhum item encontrado.</p>
+    </ng-template>
+  </div>
+</app-sidebar>
