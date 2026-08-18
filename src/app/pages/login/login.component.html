@@ -1,0 +1,31 @@
+<main>
+  <section class="frame">
+    <div class="form-side">
+    <form class="login-card" #loginForm="ngForm" (ngSubmit)="onEntrar()">
+      <h2>login</h2>
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" [(ngModel)]="email" placeholder="seuemail@gmail.com" required>
+      <label for="senha">Senha</label>
+      <input type="password" id="senha" name="senha" [(ngModel)]="senha" placeholder="sua senha" required>
+      @if (erro) {
+        <span class="erro">{{ erro }}</span>
+      }
+      <span class="esqueci">esqueci minha senha!</span>
+      <button type="submit">Entrar</button>
+    </form>
+    </div>
+    <div class="background">
+      <div class="brand">
+        <div class="brand-mark"><span></span><span></span><span></span><span></span></div>
+        <div>
+          <div class="brand-name">Gt cell</div>
+          <div class="brand-sub">gestão de loja</div>
+        </div>
+      </div>
+      <div class="glow"></div>
+      <h1 class="titulo">seja bem vindo de volta!</h1>
+      <p class="subtitulo">acesse sua conta para continuar gerenciando sua loja</p>
+      <img class="ilustrator" src="../../../assets/imagens/login.png" alt="imagem-background"/>
+    </div>
+  </section>
+</main>

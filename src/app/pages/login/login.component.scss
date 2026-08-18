@@ -1,0 +1,207 @@
+:host {
+  --accent: #f2c14e;
+  --accent-soft: rgba(242, 193, 78, .18);
+  --text: #ffffff;
+  --text-muted: #d8cfe0;
+  --text-faint: #b3a8c2;
+  --border: #a495ad;
+  --surface: #0c0e15;
+  --surface-2: #7a6a80;
+
+  display: block;
+  min-height: 100vh;
+  font-family: 'Segoe UI', system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+}
+
+main {
+  display: flex;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background: #ffffff;
+}
+
+main * {
+  box-sizing: border-box;
+}
+
+.frame {
+  display: flex;
+  flex: 1;
+  margin: 20px;
+  height: 90vh;
+  box-sizing: border-box;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.background {
+  position: relative;
+  flex: 1.1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 0%, var(--accent-soft), transparent 45%);
+
+  .brand {
+    position: absolute;
+    top: 32px;
+    left: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-mark { width: 26px; height: 20px; display: flex; align-items: flex-end; gap: 3px; }
+  .brand-mark span { width: 4px; background: var(--accent); border-radius: 1px; }
+  .brand-mark span:nth-child(1) { height: 6px; }
+  .brand-mark span:nth-child(2) { height: 11px; }
+  .brand-mark span:nth-child(3) { height: 16px; }
+  .brand-mark span:nth-child(4) { height: 20px; background: var(--surface); }
+  .brand-name { color: var(--surface); font-weight: 700; font-size: 15px; letter-spacing: .2px; }
+  .brand-sub {
+    font-size: 9.5px;
+    color: var(--surface-2);
+    letter-spacing: .6px;
+    text-transform: uppercase;
+    margin-top: -2px;
+  }
+
+  .glow {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--accent-soft) 0%, transparent 70%);
+    filter: blur(10px);
+    z-index: 0;
+  }
+
+  .titulo {
+    position: relative;
+    color: var(--surface);
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: .2px;
+    text-align: center;
+    text-transform: capitalize;
+    max-width: 360px;
+    margin: 0;
+  }
+
+  .subtitulo {
+    position: relative;
+    color: var(--surface-2);
+    font-size: 13.5px;
+    text-align: center;
+    max-width: 300px;
+    margin: -12px 0 0;
+  }
+
+  .ilustrator {
+    position: relative;
+    max-width: 78%;
+    height: auto;
+    filter: drop-shadow(0 16px 24px rgba(12, 14, 21, .12));
+  }
+}
+
+.form-side {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 0%, var(--accent-soft), transparent 45%);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 36px 32px 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, .18);
+
+  h2 {
+    color: var(--text);
+    font-weight: 700;
+    font-size: 22px;
+    text-transform: capitalize;
+    margin: 0 0 18px;
+  }
+
+  label {
+    color: var(--text-faint);
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: .8px;
+    margin-top: 14px;
+    margin-bottom: 6px;
+  }
+
+  input {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 11px 12px;
+    color: var(--text);
+    font-size: 13.5px;
+    outline: none;
+    transition: border-color .15s ease, background .15s ease;
+
+    &::placeholder {
+      color: var(--text-faint);
+    }
+
+    &:focus {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+    }
+  }
+
+  .erro {
+    margin-top: 10px;
+    color: #f26666;
+    font-size: 12px;
+  }
+
+  .esqueci {
+    align-self: flex-end;
+    margin-top: 10px;
+    color: var(--text-muted);
+    font-size: 12px;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--accent);
+    }
+  }
+
+  button {
+    margin-top: 24px;
+    padding: 11px;
+    border: none;
+    border-radius: 8px;
+    background: var(--accent);
+    color: #1a1408;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: .3px;
+    cursor: pointer;
+    transition: filter .15s ease;
+
+    &:hover {
+      filter: brightness(1.08);
+    }
+  }
+}
